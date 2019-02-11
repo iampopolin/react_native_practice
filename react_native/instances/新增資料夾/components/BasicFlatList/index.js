@@ -64,7 +64,6 @@ export default class BasicFlatList extends Component {
   };
 
   render() {
-    const { Drawerparam } = this.props; //接收hello.js 來的參數
     return (
       <View style={{ flex: 1 }}>
         {/**上面去除marginTop:20 */}
@@ -72,29 +71,12 @@ export default class BasicFlatList extends Component {
           style={{
             height: 50,
             backgroundColor: '#111',
-            //alignItems: 'center',
-            justifyContent: 'center'
-            //paddingRight: 20
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingRight: 20
           }}
         >
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}
-          >
-            <Icon
-              style={{ paddingLeft: 7 }}
-              name="bars"
-              size={30}
-              color="#fff"
-              onPress={() => {
-                Drawerparam.openDrawer(); //相當於this.props.navigation.openDrawer()
-              }}
-            />
-
+          <View style={{ alignSelf: 'flex-end' }}>
             <TouchableOpacity onPress={this.addFlatListData}>
               <Icon name="plus-circle" size={30} color="#fff" />
             </TouchableOpacity>
