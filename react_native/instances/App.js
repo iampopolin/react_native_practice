@@ -36,7 +36,7 @@ const CustomDrawerContentComponent = props => (
       <Body>
         <Image
           style={styles.drawerImage}
-          source={require('./assets/mario.png')}
+          source={require('./assets/user.png')}
         />
       </Body>
     </Header>
@@ -52,7 +52,12 @@ const Homestack = createStackNavigator(
     testScreen: test
   },
   {
-    initialRouteName: 'FeedScreen'
+    initialRouteName: 'FeedScreen',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: 'pink'
+      }
+    }
   }
 );
 const TabNavigator = createBottomTabNavigator(
@@ -156,7 +161,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   drawerImage: {
-    height: 150,
+    height: 160,
     width: 160
   },
   drawerLinkIcons: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 
 import styles from './styles';
 import TextInput from './components/InputWithIcons/index';
@@ -31,7 +31,13 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoAndTitle}>
-          <Image source={require('./img.png')} />
+          <Image
+            source={require('./img.png')}
+            style={{
+              width: Dimensions.get('window').width,
+              height: Dimensions.get('window').height / 3
+            }}
+          />
           <Text style={styles.logoAndTitleText}>React Native</Text>
         </View>
         <View style={styles.login}>

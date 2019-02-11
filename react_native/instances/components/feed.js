@@ -14,3 +14,13 @@ export default class Feed extends Component {
     );
   }
 }
+Feed.navigationOptions = {
+  title: 'Feed Page',
+  headerTitleStyle: {
+    flex: 1,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textAlign: 'center'
+  },
+  headerTintColor: '#6666FF'
+};
