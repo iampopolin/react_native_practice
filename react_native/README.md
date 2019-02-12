@@ -88,11 +88,31 @@
   cd project/instances
   react-native run-android
   
-  使用react-native 0.57.8版本 ，npm install react-navigation@2.18.2 ，
+  使用react-native 0.57.8版本 ，npm install react-navigation@2.18.2 ，npm install native-base，
   使用了maxs15 / react-native-modalbox , react-native-vector-icons(請看github安裝教學), dancormier / react - native - swipeout , APSL/react-native-button
   在BasicFlatList中，考慮到上方的icon要左右對稱，原來的布局必須要修改
   BasicFlatList並沒有this.props.navigation 所以要從 原來引用他的原件那裏傳遞 this.props.navigation參數
 * * *
-  
-  
+試作品
+
+![image](https://github.com/B0544218/react_native_practice/blob/master/react_native/gif%E7%B6%9C%E5%90%88%E5%AF%A6%E4%BE%8B.gif)
+
+* * *
+### FireBase
+
+npm install firebase
+
+注意! 
+
+import firebase from '@firebase/app';
+
+import '@firebase/database';
+
+import '@firebase/auth';
+
+import '@firebase/storage';
+
+然後在firebase上 點擊專案設定來到Database底下
+
+如果上方Database旁邊顯示 Cloud Firestore 點擊他 將他選為Realtime Database
   
