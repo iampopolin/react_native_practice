@@ -115,4 +115,24 @@ import '@firebase/storage';
 然後在firebase上 點擊專案設定來到Database底下
 
 如果上方Database旁邊顯示 Cloud Firestore 點擊他 將他選為Realtime Database
+
+###### 進行註冊auth()註冊
+
+首先到Firebase上的Authentication 的登入方式 打開 "電子郵件/密碼"
+
+註冊Authentication  並送出驗證信件
+
+firebase.auth().createUserWithEmailAndPassword(郵件,密碼)
+
+並在createUserWithEmailAndPassword方法裡 加上
+
+firebase.auth().currentUser.sendEmailVerification()
   
+登入 並在之後才可使用 firebase.auth().currentUser功能
+
+firebase.auth().signInWithEmailAndPassword(郵件,密碼)
+
+並在signInWithEmailAndPassword 之後 加上
+
+firebase.auth().currentUser.emailVerified  檢查是否 信箱驗證
+* * *
