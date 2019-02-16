@@ -136,3 +136,44 @@ firebase.auth().signInWithEmailAndPassword(郵件,密碼)
 
 firebase.auth().currentUser.emailVerified  檢查是否 信箱驗證
 * * *
+
+###### react-native-image-crop-picker 讀取Genymotion上的圖片
+
+安裝方式(參考 :ivpusic    https://github.com/ivpusic/react-native-image-crop-picker)
+
+state = {
+
+    photo: null
+    
+  };
+  
+......
+
+return( ...
+{photo && (
+
+          <Image....    />
+         
+ )}     
+此方式說明當photo有圖片時才讓Image 變得能用
+
+* * *
+
+### rn-fetch-blob 和 firebase
+
+##### 另外記得要打開React Native Debugger(在後台交互篇有使用方式) 才可以上傳到firebase
+
+RNFetchBlob.fs.readFile()  讀取圖片位址並轉呈base64
+
+再用
+
+RNFetchBlob.polyfill.Blob.build()  讀base64並轉jpg的blob物件 ，接著用firebase.storage().ref(uid).child(命名圖片).put()  告訴storage它的類型並上傳這張圖片
+
+###### dp變數 為了找出圖片被存的address
+###### uid變數 為資料夾名稱  ，    命名的圖片名稱要不同 否則會被覆蓋掉
+
+使用  YellowBox  和  lodash  方式 把setting timer的黃色方塊隱藏起來
+
+使用 npm install firebase ， react-native-image-crop-picker 安裝方式看上篇內容 ， npm install rn-fetch-blob 並且要 react-native link
+
+* * *
