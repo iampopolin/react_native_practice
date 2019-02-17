@@ -9,6 +9,41 @@ cd project -> react-native run-android
 
 ---
 
+---
+
+基本使用 Button 模板
+
+```
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      test: 0
+    };
+  }
+
+  handlerSubmit=()=> {
+  this.setState({
+      test: this.state.test + 1
+    });
+  }
+
+.........
+render(
+  return(
+    <Button style={{ backgroundColor: '#e74c3c', borderWidth: 0, margin: 10 }}
+            textStyle={{ fontSize: 18, color: 'white' }}
+            onPress={
+              this.handlerSubmit
+            }
+          >按鈕
+          <TouchableOpacity />   <------ 如果用Navigation時並且又用Debugger時 要加上
+     </Button>
+```
+
+---
+
 #### 屬性傳遞
 
 cd project/test2
@@ -112,7 +147,7 @@ cd project/instances
 react-native run-android
 
 使用 react-native 0.57.8 版本 ，npm install react-navigation@2.18.2 ，npm install native-base，
-使用了 maxs15 / react-native-modalbox , react-native-vector-icons(請看 github 安裝教學), dancormier / react - native - swipeout , APSL/react-native-button
+使用了 maxs15 / react-native-modalbox , react-native-vector-icons(請看 github 安裝教學), dancormier / react-native-swipeout , APSL/react-native-button
 在 BasicFlatList 中，考慮到上方的 icon 要左右對稱，原來的布局必須要修改
 BasicFlatList 並沒有 this.props.navigation 所以要從 原來引用他的原件那裏傳遞 this.props.navigation 參數
 
@@ -209,5 +244,22 @@ RNFetchBlob.polyfill.Blob.build() 讀 base64 並轉 jpg 的 blob 物件 ，接�
 使用 YellowBox 和 lodash 方式 把 setting timer 的黃色方塊隱藏起來
 
 使用 npm install firebase ， react-native-image-crop-picker 安裝方式看上篇內容 ， npm install rn-fetch-blob 並且要 react-native link
+
+---
+
+---
+
+### 結合 firebase 的 Login Register
+
+請看 finish_login 以及 finish_register
+
+使用 YellowBox 和 lodash 方式 把 setting timer 的黃色方塊隱藏起來
+
+使用 firebase ， npm install native-base@2.11.0 ， npm install react-navigation@2.18.2 ， npm install react-native-vector-icons@6.2.0 ， npm install react-native-swipeout ， npm install react-native-modalbox ， npm install apsl-react-native-button
+
+```
+babel-jest 24.0.0
+jest 24.0.0
+```
 
 ---
