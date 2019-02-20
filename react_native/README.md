@@ -262,4 +262,20 @@ babel-jest 24.0.0
 jest 24.0.0
 ```
 
----
+* * *
+### ReadFirebase_and_contentComponent_separate
+```
+1. 在finish_login中可以知道 在你從登入頁面進入到其他頁面後 你的uid不用傳遞 皆可使用
+2. contentComponent 要分開組件，否則 "頭像" 沒辦法做到單獨render
+3. 安裝的套件如同   結合 firebase 的 Login Register 裡面所述
+```
+```
+read firebase模板
+firebase
+      .database()
+      .ref('users/' + firebase.auth().currentUser.uid + '/user_image')
+      .on('value', snapshot => {
+        console.log(snapshot.val());
+        this.setState({ 某個state: snapshot.val() });
+      });
+```
