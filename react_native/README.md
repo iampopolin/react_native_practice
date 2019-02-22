@@ -223,6 +223,11 @@ return( ...
 )}  
 此方式說明當 photo 有圖片時才讓 Image 變得能用
 
+```
+記得要自己在openPicker後面(又或者.then後面)加上catch
+點擊取消鍵時才不會出現錯誤訊息
+```
+
 ---
 
 ### rn-fetch-blob 和 firebase
@@ -262,13 +267,16 @@ babel-jest 24.0.0
 jest 24.0.0
 ```
 
-* * *
+---
+
 ### ReadFirebase_and_contentComponent_separate
+
 ```
 1. 在finish_login中可以知道 在你從登入頁面進入到其他頁面後 你的uid不用傳遞 皆可使用
 2. contentComponent 要分開組件，否則 "頭像" 沒辦法做到單獨render
 3. 安裝的套件如同   結合 firebase 的 Login Register 裡面所述
 ```
+
 ```
 read firebase模板
 firebase
@@ -279,3 +287,26 @@ firebase
         this.setState({ 某個state: snapshot.val() });
       });
 ```
+
+---
+
+#### image_upload_on_UI
+
+error :
+
+```
+Unable to load script from assets 'index.android.bundle' 請重新安裝android/app/src/assets
+1.刪除assets
+2.mkdir android\app\src\main\assets
+3.react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+4.react-native run-android
+
+ps. 不然安裝套件時npm install 套件 ，修改build.gradle，react-native link，run-android， 要"一次"在vs ccode裡搞定
+```
+
+```
+Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+目前是用 console.disableYellowBox = true; (不好的解決辦法)
+```
+
+---

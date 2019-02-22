@@ -45,7 +45,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       loading: false,
-      dp: null,
+      dp: null, //photo在firebase的路徑
       photo: null
     };
   }
@@ -66,47 +66,51 @@ export default class App extends Component {
       height: 250,
       cropperCircleOverlay: true,
       cropping: true
-    }).then(image => {
-      this.setState({
-        /**先不用管 */
-        photo: image
-      });
-
-      let uploadBlob = null;
-      const imagePath = image.path;
-      const imageRef = firebase
-        .storage()
-        .ref(uid)
-        .child('db.jpg');
-      let mime = 'image/jpg';
-      fs.readFile(imagePath, 'base64')
-        .then(data => {
-          //console.log(Blob.build);
-
-          return Blob.build(data, { type: `${mime};BASE64` })
-            .then(blob => {
-              uploadBlob = blob;
-              return imageRef.put(blob, { contentType: mime });
-            })
-            .then(() => {
-              uploadBlob.close();
-              return imageRef.getDownloadURL();
-            })
-            .then(url => {
-              let userData = {};
-              this.setState({
-                loading: false,
-                dp: url
-              });
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        })
-        .catch(error => {
-          console.log(error);
+    })
+      .then(image => {
+        this.setState({
+          /**先不用管 */
+          photo: image
         });
-    });
+
+        let uploadBlob = null;
+        const imagePath = image.path;
+        const imageRef = firebase
+          .storage()
+          .ref(uid)
+          .child('db3.jpg');
+        let mime = 'image/jpg';
+        fs.readFile(imagePath, 'base64')
+          .then(data => {
+            //console.log(Blob.build);
+
+            return Blob.build(data, { type: `${mime};BASE64` })
+              .then(blob => {
+                uploadBlob = blob;
+                return imageRef.put(blob, { contentType: mime });
+              })
+              .then(() => {
+                uploadBlob.close();
+                return imageRef.getDownloadURL();
+              })
+              .then(url => {
+                let userData = {};
+                this.setState({
+                  loading: false,
+                  dp: url
+                });
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      })
+      .catch(err => {
+        console.log('openCamera not catch' + err.toString());
+      });
   };
 
   render() {
