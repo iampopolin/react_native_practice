@@ -290,7 +290,7 @@ firebase
 
 ---
 
-#### image_upload_on_UI
+#### image_upload_on_UI 在 head_portrait_finish 資料夾
 
 error :
 
@@ -308,5 +308,14 @@ ps. 不然安裝套件時npm install 套件 ，修改build.gradle，react-native
 Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
 目前是用 console.disableYellowBox = true; (不好的解決辦法)
 ```
+
+---
+
+使用 firebase ， npm install native-base@2.11.0 ， npm install react-navigation@2.18.2 ， npm install react-native-vector-icons@6.2.0 ， npm install react-native-swipeout ， npm install react-native-modalbox ， npm install apsl-react-native-button
+，rn-fetch-blob，react-native-image-crop-picker
+
+#### FireBase_ReadFlash
+
+使用了 maxs15 / react-native-modalbox , react-native-vector-icons, dancormier / react - native - swipeout , APSL/react-native-button，firebase
 
 ---
