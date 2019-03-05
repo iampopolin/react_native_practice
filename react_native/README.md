@@ -318,4 +318,7 @@ Can't perform a React state update on an unmounted component. This is a no-op, b
 
 使用了 maxs15 / react-native-modalbox , react-native-vector-icons, dancormier / react - native - swipeout , APSL/react-native-button，firebase
 
+```
+this.setState後面如果想接函式(ex: .then)，用this.setState({},()=>{})
+```
 ---

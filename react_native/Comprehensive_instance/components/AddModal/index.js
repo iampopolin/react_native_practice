@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import {
   FlatList,
-  StyleSheet,
-  Text,
   View,
-  TextInput,
+  Text,
+  StyleSheet,
   Image,
   TouchableOpacity,
-  Alert
+  Alert,
+  TextInput
 } from 'react-native';
 import FlatListData from './../../mockData/FlatListData';
+import { insertNewFlatListData } from '../../services/FlatListDataService';
 import Swipeout from 'react-native-swipeout';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modalbox';
 import Button from 'apsl-react-native-button';
@@ -20,43 +20,52 @@ export default class AddModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newDate: {}
+      newData: {}
     };
   }
-
   showAddModal = () => {
     this.refs.addModal.open();
   };
   changeTextHandler = data => {
-    const color = Math.floor(Math.random() * 16777215).toString(16); //自動色彩
+    const color = Math.floor(Math.random() * 16777215).toString(16);
     this.setState({
-      newDate: {
+      newData: {
         albumId: 1,
-        id: FlatListData.length + 1,
         title: data,
-        url: 'https://via.placeholder.com/600/' + color,
-        thumbnailUrl: 'https://via.placeholder.com/150/' + color
+        url: 'http://placehold.it/600/' + color,
+        thumbnailUrl: 'http://placehold.it/150/' + color
       }
     });
   };
   submitFormHandler = () => {
-    FlatListData.push(this.state.newDate); //暫時加到FlatListData 但是重新Load後又不見了
-    this.props.parentFlatList.refreshFlatList();
-    //this.refs.myFlatList.scrollToEnd(); //跑到最底端  *這邊不能用 因為ref為 myFlatList為 <FlatList的位置> 所以我將它複製到BasicFlatList*
-    this.refs.addModal.close(); //addModal這項目關閉
+    // FlatListData.unshift(this.state.newData);
+    // this.props.parentFlatList.refreshFlatList();
+
+    insertNewFlatListData(this.state.newData).then(data => {
+      if (+data.id > 0) {
+        this.props.parentFlatList.refreshDataFromServer();
+      }
+    });
+
+    this.refs.addModal.close();
   };
+
   render() {
     return (
       <Modal
         ref="addModal"
-        position="center"
-        style={{ height: 300, width: 300, borderRadius: 10 }}
+        position={'center'}
+        style={{
+          height: 300,
+          width: 300,
+          borderRadius: 10
+        }}
       >
-        <Text style={{ fontSize: 30, padding: 20, alignSelf: 'center' }}>
-          添加數量
+        <Text style={{ fontSize: 20, padding: 20, alignSelf: 'center' }}>
+          添加数据
         </Text>
         <TextInput
-          placeholder="請輸入標題"
+          placeholder="请输入标题"
           style={{
             height: 40,
             borderColor: '#ddd',
@@ -67,9 +76,11 @@ export default class AddModal extends Component {
           onChangeText={this.changeTextHandler}
         />
         <Button
-          style={{ backgroundColor: 'red', borderWidth: 0, margin: 5 }}
+          style={{ backgroundColor: 'tomato', margin: 5, borderWidth: 0 }}
           textStyle={{ fontSize: 18, color: 'white' }}
-          onPress={this.submitFormHandler}
+          onPress={() => {
+            this.submitFormHandler();
+          }}
         >
           提交
         </Button>
