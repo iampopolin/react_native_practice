@@ -17,6 +17,8 @@ import Likes from './components/like';
 import Handshakes from './components/handshake';
 import Settings from './components/settings';
 import Groups from './components/group';
+import Shares from './components/groupchild/share';
+import Privates from './components/groupchild/private';
 import Login from './components/LoginTest/Login';
 import Register from './components/LoginTest/Register';
 
@@ -73,7 +75,17 @@ export default class App extends Component {
         }
       }
     );
-
+    const GroupChild = createStackNavigator(
+      {
+        GroupsScreen: { screen: Groups },
+        SharesScreen: { screen: Shares },
+        PrivatesScreen: { screen: Privates }
+      },
+      {
+        initialRouteName: 'GroupsScreen'
+        //headerMode: 'none'
+      }
+    );
     const TabNavigator = createBottomTabNavigator(
       {
         Home: {
@@ -83,7 +95,7 @@ export default class App extends Component {
           }
         },
         Group: {
-          screen: Groups,
+          screen: GroupChild,
           navigationOptions: {
             title: '團體招募'
           }
@@ -103,6 +115,10 @@ export default class App extends Component {
       },
       {
         navigationOptions: ({ navigation }) => ({
+          /*tabBarOnPress: ({ navigation, defaultHandler }) => {
+            console.log('onPress:', navigation.state.routeName);
+            defaultHandler();
+          },*/
           tabBarIcon: ({ focused, tintColor }) => {
             let iconName;
             const { routeName } = navigation.state;

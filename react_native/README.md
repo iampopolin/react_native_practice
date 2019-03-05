@@ -314,11 +314,36 @@ Can't perform a React state update on an unmounted component. This is a no-op, b
 使用 firebase ， npm install native-base@2.11.0 ， npm install react-navigation@2.18.2 ， npm install react-native-vector-icons@6.2.0 ， npm install react-native-swipeout ， npm install react-native-modalbox ， npm install apsl-react-native-button
 ，rn-fetch-blob，react-native-image-crop-picker
 
-#### FireBase_ReadFlash
+#### Comprehensive_instance
 
-使用了 maxs15 / react-native-modalbox , react-native-vector-icons, dancormier / react - native - swipeout , APSL/react-native-button，firebase
+```
+"dependencies": {
+    "apsl-react-native-button": "^3.1.1",
+    "firebase": "^5.8.4",
+    "native-base": "^2.11.0",
+    "react": "16.6.3",
+    "react-native": "0.57.8",
+    "react-native-image-crop-picker": "^0.22.0",
+    "react-native-modalbox": "^1.7.1",
+    "react-native-swipeout": "^2.3.6",
+    "react-native-vector-icons": "^6.2.0",
+    "react-navigation": "^2.18.2",
+    "rn-fetch-blob": "^0.10.15"
+  },
+  "devDependencies": {
+    "babel-jest": "24.1.0",
+    "jest": "24.1.0",
+    "metro-react-native-babel-preset": "0.52.0",
+    "react-test-renderer": "16.6.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+```
 
 ```
 this.setState後面如果想接函式(ex: .then)，用this.setState({},()=>{})
+還有一個小Bug : 按like後取消刊登 ， 結果like的對象還在
 ```
+
 ---

@@ -28,13 +28,6 @@ export default class BasicFlatList extends Component {
     super(props);
   }
 
-  /*upload_insert = id => {
-    const temp = [...this.state.test];
-    temp.push(id);
-    this.setState({ test: temp });
-  };
-*/
-
   componentDidMount() {
     firebase
       .database()

@@ -26,14 +26,7 @@ export default class LIKE_BasicFlatList extends Component {
     super(props);
   }
 
-  /*upload_insert = id => {
-    const temp = [...this.state.test];
-    temp.push(id);
-    this.setState({ test: temp });
-  };
-*/
-
-  componentWillMount() {
+  componentDidMount() {
     firebase
       .database()
       .ref('users/' + firebase.auth().currentUser.uid + '/like')
