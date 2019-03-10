@@ -1,14 +1,20 @@
 # React_Native0.57.8
 
 ## Genymotion react-native init --version 0.57.8 projectname
-
+```
+設定->語法與輸入設定 : 開啟實體鍵盤 
+openGAPP(Genymotion右上角) 下載Play商店 -> 下載keyboard中文版 
+```
 ---
 
 cd project -> react-native start
 cd project -> react-native run-android
 
 ---
-
+#### flex布局
+```
+https://github.com/crazycodeboy/RNStudyNotes/blob/master/React%20Native%E5%B8%83%E5%B1%80/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97/React%20Native%E5%B8%83%E5%B1%80%E8%AF%A6%E7%BB%86%E6%8C%87%E5%8D%97.md
+```
 ---
 
 基本使用 Button 模板
@@ -133,6 +139,9 @@ react-native run-android
 HomeScreen.navigationOptions，SettingsScreen.navigationOption，DetailScreen.navigationOptions 仍然有效果。
 MainStack 底下放 主要節點 以及 分支節點 ，他們各有自己的首頁
 
+```
+
+```
 ---
 
 ## 綜合練習
@@ -179,6 +188,14 @@ import '@firebase/storage';
 
 如果上方 Database 旁邊顯示 Cloud Firestore 點擊他 將他選為 Realtime Database
 
+```
+global.Symbol = require('core-js/es6/symbol');
+require('core-js/fn/symbol/iterator');
+require('core-js/fn/map');
+require('core-js/fn/set');
+require('core-js/fn/array/find');
+//使用firebase web sdk 時候必須在index中導入
+```
 ###### 進行註冊 auth()註冊
 
 首先到 Firebase 上的 Authentication 的登入方式 打開 "電子郵件/密碼"
@@ -343,7 +360,27 @@ Can't perform a React state update on an unmounted component. This is a no-op, b
 
 ```
 this.setState後面如果想接函式(ex: .then)，用this.setState({},()=>{})
-還有一個小Bug : 按like後取消刊登 ， 結果like的對象還在
+還有一個小Bug : 1.按like後取消刊登 ， 結果like的對象還在，2.自己也必須禁止按自己like
 ```
 
 ---
+```
+1.setState array object 看這篇
+https://www.freecodecamp.org/forum/t/reactjs-using-setstate-to-update-a-single-property-on-an-object/146772/3
+2.Image source={require(原本想要放物件)}不允許放物件 必須這樣改寫 再用 source={object}的方式
+3.tab內嵌stack時，tab切換跳轉回stack最上層
+  navigationOptions: ({ navigation }) => ({
+          tabBarOnPress: ({ navigation, defaultHandler }) => {
+            if (navigation.state.routeName == 'Group') {
+              //路由到Group時
+              navigation.dispatch(navigateAction); //用dispatch執行action
+            }
+            defaultHandler();
+          },.........省略
+  const navigateAction = NavigationActions.navigate({
+  routeName: 'Group', //給父router
+  params: {},
+  // navigate can have a nested navigate action that will be run inside the child router
+  action: NavigationActions.navigate({ routeName: 'GroupsScreen' }) //想要路由到的子router
+});
+```
