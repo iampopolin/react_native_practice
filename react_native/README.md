@@ -360,7 +360,7 @@ Can't perform a React state update on an unmounted component. This is a no-op, b
 
 ```
 this.setState後面如果想接函式(ex: .then)，用this.setState({},()=>{})
-還有一個小Bug : 1.按like後取消刊登 ， 結果like的對象還在，2.自己也必須禁止按自己like，3.想要把按到的like對象不顯示在Search介面上 但因為異步問題導致他們還留在介面上
+還有一個小Bug : 1.按like後取消刊登 ， 結果like的對象還在，2.自己也必須禁止按自己like，
 ```
 
 ---
